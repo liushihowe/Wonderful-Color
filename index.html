@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wonderful Color · 莫奈配色</title>
+  <meta name="description" content="基于 Material You 动态配色(Monet)的主题生成器:输入一个源色,生成完整的深浅色配色方案。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <h1 data-i18n="app.title"></h1>
+        <p class="subtitle" data-i18n="header.subtitle"></p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <!-- 语言切换:选项由 main.js 根据 i18n.js 的 supportedLangs 渲染 -->
+      <select id="lang-select" aria-label="language"></select>
+      <button id="theme-toggle" class="icon-btn" type="button">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 源色:自定义取色 / 预设色 / 方案类型 -->
+    <section class="card">
+      <h2 data-i18n="seed.title"></h2>
+      <p class="desc" data-i18n="seed.desc"></p>
+      <div class="seed-controls">
+        <label class="field">
+          <span data-i18n="seed.custom"></span>
+          <div class="color-input">
+            <input type="color" id="picker" value="#6750A4">
+            <input type="text" id="hex-input" value="#6750A4" spellcheck="false" maxlength="7">
+          </div>
+        </label>
+        <label class="field">
+          <span data-i18n="seed.variant"></span>
+          <select id="variant-select"></select>
+        </label>
+      </div>
+      <h3 class="subhead" data-i18n="seed.presets"></h3>
+      <div id="preset-row" class="preset-row"></div>
+    </section>
+
+    <!-- 配色方案:浅色 / 深色角色色板 -->
+    <section class="card">
+      <h2 data-i18n="scheme.title"></h2>
+      <p class="desc" data-i18n="scheme.desc"></p>
+      <div id="scheme-grid" class="scheme-grid"></div>
+    </section>
+
+    <!-- 色调板:各调色板的 0~100 色阶 -->
+    <section class="card">
+      <h2 data-i18n="palette.title"></h2>
+      <p class="desc" data-i18n="palette.desc"></p>
+      <div id="palette-list"></div>
+    </section>
+
+    <!-- 组件预览 -->
+    <section class="card">
+      <h2 data-i18n="preview.title"></h2>
+      <p class="desc" data-i18n="preview.desc"></p>
+      <div id="preview-grid" class="scheme-grid"></div>
+    </section>
+
+    <!-- 导出 -->
+    <section class="card">
+      <h2 data-i18n="export.title"></h2>
+      <p class="desc" data-i18n="export.desc"></p>
+      <div class="export-actions">
+        <button id="copy-css" class="action-btn" type="button" data-i18n="export.copyCss"></button>
+        <button id="copy-json" class="action-btn secondary" type="button" data-i18n="export.copyJson"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer><p data-i18n="footer"></p></footer>
+  <div id="toast" role="status"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
