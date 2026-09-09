@@ -18,46 +18,22 @@
 - **多语言**:目前支持中文 / English(在 `i18n.js` 中新增字典即可扩展)
 - 所有状态(源色、方案、主题、语言)本地记忆
 
-## 本地预览
-
-纯静态站点,但使用了 ES Modules,因此需要通过 HTTP 访问(直接双击 `index.html` 会因 `file://` 的 CORS 限制无法加载):
-
-```bash
-# 任选其一
-python -m http.server 8000
-npx serve .
-```
-
-然后打开 http://localhost:8000
-
-## 发布到 GitHub Pages
-
-1. 在 GitHub 新建仓库(例如 `Wonderful-Color`),推送本目录全部文件:
-
-   ```bash
-   git init
-   git add .
-   git commit -m "Monet color scheme generator"
-   git branch -M main
-   git remote add origin https://github.com/<你的用户名>/Wonderful-Color.git
-   git push -u origin main
-   ```
-
-2. 仓库 **Settings → Pages**,Source 选择 `Deploy from a branch`,分支选 `main` / `root`,保存。
-3. 稍等片刻,站点即上线:`https://<你的用户名>.github.io/Wonderful-Color/`
-
-> `.nojekyll` 已内置,保证 `vendor/` 等目录原样发布。
-
 ## 目录结构
 
 ```
-├── index.html      # 页面结构(data-i18n 绑定静态文案)
-├── styles.css      # 样式,颜色全部来自 --m3-* 变量
-├── main.js         # 核心逻辑:取色、换肤、渲染、导出
-├── i18n.js         # 多语言文案(新增语言在此扩展)
-├── favicon.svg     # 图标
-├── .nojekyll       # 跳过 Jekyll 处理
-└── vendor/mcu/     # Google material-color-utilities 源码(Apache-2.0)
+├── index.html        # 页面结构(data-i18n 绑定静态文案)
+├── styles.css        # 样式,颜色全部来自 --m3-* 变量
+├── js/
+│   ├── main.js       # 入口:事件绑定与整页重渲染编排
+│   ├── state.js      # 全局状态与 localStorage / sessionStorage 持久化
+│   ├── engine.js     # 配色引擎封装与静态配置(角色、色阶、预设色)
+│   ├── render.js     # 各区块的 HTML 渲染
+│   ├── exporter.js   # CSS 变量 / JSON 令牌导出
+│   ├── lang.js       # t() 文案取值与参数插值
+│   └── i18n.js       # 多语言文案(新增语言在此扩展)
+├── favicon.svg       # 图标
+├── .nojekyll         # 跳过 Jekyll 处理
+└── vendor/mcu/       # Google material-color-utilities 源码(Apache-2.0)
 ```
 
 ## 使用导出的配色
