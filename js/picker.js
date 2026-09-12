@@ -64,6 +64,7 @@ function draggable(el, cb) {
       clamp01((ev.clientY - rect.top) / rect.height),
     );
     update(e);
+    el.addEventListener('pointermove', update);
     const end = () => {
       dragging = false;
       document.body.classList.remove('dragging');
