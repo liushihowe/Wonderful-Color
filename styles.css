@@ -82,6 +82,9 @@ html[data-theme="dark"] { color-scheme: dark; }
 
 html { scroll-behavior: smooth; }
 
+/* 配色就绪前隐藏页面,避免首帧闪现 CSS 默认紫色(JS 加载后加 .ready 显示) */
+body:not(.ready) { visibility: hidden; }
+
 body {
   margin: 0;
   font-family: "Segoe UI", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;

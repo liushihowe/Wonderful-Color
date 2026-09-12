@@ -149,3 +149,4 @@ $('copy-json').addEventListener('click', () =>
 // ---------- 启动 ----------
 
 renderAll();
+document.body.classList.add('ready');
