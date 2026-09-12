@@ -4,11 +4,11 @@
 
 输入一个源色(自定义取色或预设色),实时生成完整的深色 / 浅色 Material 3 配色方案,整站换肤,一键复制 CSS 变量或 JSON 令牌。
 
-![配色引擎](favicon.svg)
+<img src="favicon.svg" width="64" alt="配色引擎">
 
 ## 功能
 
-- **官方算法**:直接使用 material-color-utilities 的 TypeScript 源码(完整内置于 `vendor/mcu/`,站点可离线运行,无需构建、无第三方依赖)
+- **官方算法**:直接使用 material-color-utilities 的 TypeScript 源码,无需构建、无第三方依赖
 - **7 种方案类型**:Tonal Spot(默认)、Vibrant、Expressive、Neutral、Fidelity、Content、Monochrome
 - **深 / 浅双主题**:一键切换,支持跟随系统
 - **完整角色色板**:primary / secondary / tertiary / error / surface 等 27 个 M3 角色

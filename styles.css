@@ -3,7 +3,9 @@
    由工作台版去掉左侧导航而来:顶栏 + 居中内容流,
    编号章节,扁平锐利面板。
    站点自身直接套用生成的方案配色:--m3-* 变量由 js 按当前
-   主题实时写入 :root,此处仅为 JS 运行前的兜底值(基线紫)。
+   主题实时写入 :root,此处仅为 JS 运行前的兜底值(基线紫),
+   浅 / 深两套,配合 index.html 内联脚本在首帧前设好 data-theme
+   消除深色用户的白底闪烁。
    ============================================================ */
 :root {
   --m3-primary: #65558f;
@@ -40,6 +42,37 @@
   --radius-md: 12px;
   --radius-sm: 8px;
   --mono: ui-monospace, Consolas, "Cascadia Mono", monospace;
+}
+
+/* 深色兜底:与 :root 同一套角色,值取自基线紫的官方 dark 方案(与 js 写入值一致) */
+html[data-theme="dark"] {
+  --m3-primary: #cfbdfe;
+  --m3-on-primary: #36275d;
+  --m3-primary-container: #4d3d75;
+  --m3-on-primary-container: #e9ddff;
+  --m3-secondary: #cbc2db;
+  --m3-on-secondary: #332d41;
+  --m3-secondary-container: #4a4458;
+  --m3-on-secondary-container: #e8def8;
+  --m3-tertiary: #efb8c8;
+  --m3-on-tertiary: #4a2532;
+  --m3-tertiary-container: #633b48;
+  --m3-on-tertiary-container: #ffd9e3;
+  --m3-error: #ffb4ab;
+  --m3-on-error: #690005;
+  --m3-surface: #141218;
+  --m3-on-surface: #e6e0e9;
+  --m3-surface-variant: #49454e;
+  --m3-on-surface-variant: #cac4cf;
+  --m3-outline: #948f99;
+  --m3-outline-variant: #49454e;
+  --m3-surface-container: #211f24;
+  --m3-surface-container-low: #1d1b20;
+  --m3-surface-container-high: #2b292f;
+  --m3-surface-container-highest: #36343a;
+  --m3-inverse-surface: #e6e0e9;
+  --m3-inverse-on-surface: #322f35;
+  --m3-inverse-primary: #65558f;
 }
 
 html[data-theme="light"] { color-scheme: light; }
@@ -230,6 +263,10 @@ main {
 .seed-stage:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+/* 拖动取色时关掉大色块的背景过渡,让颜色紧跟手势 */
+body.dragging .seed-stage {
+  transition: transform 0.15s, box-shadow 0.2s;
 }
 .seed-stage-label { font-size: 12.5px; opacity: 0.75; }
 .seed-stage-hex {

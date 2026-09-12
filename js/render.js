@@ -21,6 +21,7 @@ export function applyStaticTexts() {
   }
   document.documentElement.lang = state.lang;
   document.title = t('app.title');
+  document.querySelector('meta[name="description"]').content = t('app.desc');
 }
 
 // 把当前主题的角色色写入 :root 的 --m3-* 变量,整站实时换肤
@@ -29,6 +30,8 @@ export function applyThemeVars(colors) {
     document.documentElement.style.setProperty(cssVar(role), hex);
   }
   document.documentElement.dataset.theme = state.theme;
+  // 移动端浏览器地址栏颜色跟随当前方案的 surface
+  document.querySelector('meta[name="theme-color"]').content = colors.surface;
 }
 
 // ---------- 顶栏 ----------

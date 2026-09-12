@@ -49,9 +49,30 @@ function renderAll() {
   renderPreview(schemes);
 }
 
+// 只渲染依赖源色的部分:切语言 / 方案 / 主题时走 renderAll,拖动取色时只走这里
+function renderSeedDependent() {
+  const schemes = buildSchemes(state.seed, state.variant);
+  applyThemeVars(colorsOf(schemes[state.theme]));
+  renderPresets();
+  syncSeedInputs();
+  renderSchemePanels(schemes);
+  renderPalettes(schemes);
+  renderGuide(schemes);
+  renderPreview(schemes);
+}
+
+// 拖动取色时每个 pointermove 都会 commit,用 rAF 合并到每帧最多一次渲染
+let seedRenderQueued = false;
+
 const commit = (key, value) => {
   setState(key, value);
-  renderAll();
+  if (key !== 'seed') { renderAll(); return; }
+  if (seedRenderQueued) return;
+  seedRenderQueued = true;
+  requestAnimationFrame(() => {
+    seedRenderQueued = false;
+    renderSeedDependent();
+  });
 };
 
 // ---------- 事件:顶栏 ----------

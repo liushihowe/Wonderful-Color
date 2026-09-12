@@ -57,17 +57,20 @@ function draggable(el, cb) {
   el.addEventListener('pointerdown', (e) => {
     const rect = el.getBoundingClientRect();
     dragging = true;
+    document.body.classList.add('dragging');
     el.setPointerCapture(e.pointerId);
     const update = (ev) => cb(
       clamp01((ev.clientX - rect.left) / rect.width),
       clamp01((ev.clientY - rect.top) / rect.height),
     );
     update(e);
-    el.addEventListener('pointermove', update);
-    el.addEventListener('pointerup', () => {
+    const end = () => {
       dragging = false;
+      document.body.classList.remove('dragging');
       el.removeEventListener('pointermove', update);
-    }, { once: true });
+    };
+    el.addEventListener('pointerup', end, { once: true });
+    el.addEventListener('pointercancel', end, { once: true });
     e.preventDefault();
   });
 }

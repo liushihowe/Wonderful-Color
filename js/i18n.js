@@ -14,6 +14,7 @@ export const defaultLang = 'zh-CN';
 export const messages = {
   'zh-CN': {
     'app.title': 'Wonderful Color · 莫奈配色',
+    'app.desc': '基于 Material You 动态配色(Monet)的主题生成器: 输入一个源色, 生成完整的深浅色配色方案.',
     'header.subtitle': 'Material You 动态配色(Monet)主题生成器',
     'header.language': '选择语言',
     'theme.toDark': '切换到深色模式',
@@ -141,10 +142,11 @@ export const messages = {
     'export.copyCss': '复制 CSS 变量',
     'export.copyJson': '复制 JSON',
     'toast.copied': '已复制 {value}',
-    'footer': '配色算法:Google material-color-utilities v0.3.0(Apache-2.0),完整源码已内置于 vendor/mcu/,站点可离线运行',
+    'footer': '配色算法:Google material-color-utilities v0.3.0(Apache-2.0)',
   },
   en: {
     'app.title': 'Wonderful Color · Monet Theme',
+    'app.desc': 'Material You dynamic color (Monet) theme generator: pick a seed color and get full light & dark Material 3 schemes.',
     'header.subtitle': 'Material You dynamic color (Monet) theme generator',
     'header.language': 'Language',
     'theme.toDark': 'Switch to dark mode',
@@ -272,6 +274,6 @@ export const messages = {
     'export.copyCss': 'Copy CSS variables',
     'export.copyJson': 'Copy JSON',
     'toast.copied': 'Copied {value}',
-    'footer': 'Color engine: Google material-color-utilities v0.3.0 (Apache-2.0), full source vendored in vendor/mcu/ — the site works offline.',
+    'footer': 'Color engine: Google material-color-utilities v0.3.0 (Apache-2.0).',
   },
 };
